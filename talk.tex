@@ -1,0 +1,223 @@
+\documentclass[
+c,
+11pt,
+aspectratio=169, % 169 1610 149 32 43 54
+final,
+]{beamer}
+\def\usebeamer{1}
+\input{include/header}
+
+% \newboolean{consumer}
+% \newboolean{onlyagent}
+% \newboolean{showshock}
+
+% \def\nobackupslides{true}
+
+% \setbeameroption{show notes on second screen}
+% \setbeameroption{show notes}
+% \includeonlyframes{stateoftheart,contributions}\renewcommand{\note}[2][1]{}
+
+\input{include/configuration}
+\input{/home/cotto/publications/impacts_in_IAMs/renew_commands}
+\newcommand{\citationfloodingadaptation}{
+  \textcolor{black!60!white}{Willner, Levermann, Zhao, Frieler.}
+  \emph{Science Advances}.
+  \textcolor{black!60!white}{2018 (OA)}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\author{Christian Otto, T. Geiger, and Katja Frieler}
+\title{Climate Impacts in Macroeconomic Growth Models}
+\date{$\secnd$ Damage Meeting, June 11}
+\hypersetup{pdfauthor={Christian Otto}}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \maketitle
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}
+  \frametitle{Possible ways forward}
+  \begin{enumerate}
+  \item Account for persistencies by empirically estimate impacts channels (capital stock, total factor productivities etc.) accounted in IAMs
+  \item Estimate cumulative GDP losses for each levels of warming and use these as IAM input
+  \item Endogenously explain empirically observed persistencies by `specialized' impact models 
+  \end{enumerate}
+  \begin{itemize}
+\arrowitem 1. appears feasible way forward for next evaluation
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Production Functions in IAMs}
+  \begin{itemize}
+  \item  Production system in IAMs often described by an aggregate production function of CES type
+  \end{itemize}
+  \vfill
+  \begin{equation*}
+    \label{eq:CD}
+    Y(\tau,T)\equiv \big(1-\DA(\tau,T)\big)A(\tau)\left[\big(1-\DK(\tau,T)\big)K(\tau) \right]^\alpha L(\tau)^{\alpha-1}
+  \end{equation*}
+  \vfill
+  \begin{minipage}[l]{.49\linewidth}
+   \begin{itemize} 
+   \item [$\tau$] Slow (decadal) timescale
+   \item [$T$] Global temperature
+   \item [$A$] Total factor productivity
+   \item [$K$] Capital
+   \end{itemize}
+ \end{minipage}\hfill
+ \begin{minipage}[r]{.49\linewidth}
+   \begin{itemize}
+   \item [$L$]  Labor
+   \item [$\alpha$] Cobb-Douglas coefficient    
+   \item [$\DA$] \tc{red}{Relative} damages to $A$ 
+   \item [$\DK$] \tc{red}{Relative} damages to capital
+   \end{itemize}
+ \end{minipage}
+ \vfill
+ \begin{itemize}
+ \item Assumption: Climate extremes have an instantaneous impact on $K$, and have persistent impacts on $A$, GDP.
+   \arrowitem Estimate persistencies for $A$
+   \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Climate Damages from ISIMIP simulations}
+  \begin{enumerate}
+  \item Estimate persistencies
+  \item Sum damages across categories
+  \item Timeseries of cumulative damages (country or subnational level)
+  \item From event-based to temperature dependent damages
+  \item Integration to world regions  
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step 1: Estimate Persistencies}
+  \begin{minipage}[r]{.6\linewidth}
+  \begin{itemize}
+  \item Panel regressions with lagged variables
+  \end{itemize}
+  \begin{equation*}
+    \ln\big(A_{j,t})\big) = \gamma_j + \delta_{t} + \theta_j t + \sum_{l=0}^{L}\bA_{l}E_{j,t-l}+\epsilon_{j,t}
+  \end{equation*}
+  \begin{itemize}
+  \item Cumulative impact $k$ years after exposure
+  \end{itemize}
+  \begin{equation*}
+    \Omega_{t,k}\equiv\sum_{l=0}^{k}\beta_{t-L}
+  \end{equation*}
+\end{minipage}\hfill
+\begin{minipage}[r]{.39\linewidth}
+\end{minipage}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step 2: Sum Damages Across Categories}
+    \begin{minipage}[r]{.6\linewidth}
+  \begin{itemize}
+  \item Cross-sectional panel regressions
+  \end{itemize}
+  \begin{equation*}
+    \ln\big(A_{j,t}\big) = \gamma_j + \delta_{t} + \theta_j t + \sum_{l=0}^{L}\bA_{l}\tc{red}{P_{j,t-l}}+\epsilon_{j,t}
+  \end{equation*}
+  \begin{itemize}
+  \item Cumulative impact $k$ years after exposure
+  \end{itemize}
+  \begin{equation*}
+    P_{i,t-l}\equiv\frac{1}{\operatorname{Pop}_{i,t-l}}\sum_{c\in\mbC} P_{i,t-L}
+  \end{equation*}
+\end{minipage}\hfill
+\begin{minipage}[r]{.39\linewidth}
+\end{minipage}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step 3: Timeseries of Cumulative Damages}
+      \begin{minipage}[r]{.6\linewidth}
+        \begin{itemize}
+  \item For simplicity assume:\\ 1 GCM $+$ SSP2 $+$ 1 impact model for each category $c$          
+  \item Timeseries of \emph{relative} cumulative damages for country $j$ for \emph{one} impact realization $\lbrace P\rbrace_{j,b,t}$  
+  \end{itemize}
+  \begin{equation*}
+     \DA_{j,t,d}\left(\lbrace P\rbrace_{j,b,t}\right)\equiv 1 - \ \prod_{n=0}^{t}\left(1-\dA_{j,t-n}\right)
+   \end{equation*}
+   \begin{itemize}
+\item  $\dA_{j,t-n}$ denotes the `instantaneous' damage caused by a series $\lbrace P_{j,t-m}^i\rbrace_{m=0}^L$ of hazards   
+   \end{itemize}
+  \begin{equation*}
+    \dA_{j,t}\left(\lbrace P_{j,t-m}^i\rbrace_{m=0}^L\right)\equiv \sum_{m=0}^L\beta_m\sum_{i=0}^IP_{j,t-m}^i
+  \end{equation*}
+%   \begin{itemize}
+% \arrowitem Average over the different impact model combinations?
+%   \end{itemize}
+
+\end{minipage}\hfill
+\begin{minipage}[r]{.39\linewidth}
+\end{minipage}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step 4: From Event-Based to Temperature Dependent Damages}
+  \begin{itemize}
+  \item Each RCP-SSP-GCM combination provides \textbf{unique} mapping $t \rightarrow T$
+    \arrowitem For each temperature interval $\Delta T$ there is associated set of cumulative damages
+  \end{itemize}
+    \begin{equation*}
+   \mbDA_{j,d}(\Delta T_b)\equiv\lbrace \DA_{j,t,d}\, \vert\, t' \text{ for } T(t')\in\Delta T_b \rbrace
+\end{equation*}
+\begin{itemize}
+\item Ensemble average over set members $\mbDA_{j,d}(\Delta T_d)$ yields country level damages over temperature interval  
+\end{itemize}
+\begin{equation*}
+  \langle \DA_{j}\rangle(\Delta T_b)\equiv\big\langle \DA_{j,t,d}\big\rangle_{\mbDA_{j}}(\Delta T_b)
+\end{equation*}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Step 5: Integration to World Regions}
+  \begin{itemize}
+  \item IAMs operate on the level of world regions $r\in\mbN_r$
+    \arrowitem Average over the countries $j$ belonging to each region $r$ (weighted by average population or GDP or asset stock to obtain damages $\langle \DA_{r}\rangle(\Delta T_b)$ for $\Delta T_b$.
+  \end{itemize}
+
+  \begin{itemize}
+  \item For each RCP-SSP combination average IAM output over different GCM-Impact model combinations
+  \end{itemize}
+  
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+
+
+% \begin{frame}[label=adaptationbins]
+%   \frametitle{Necessary adaptation to keep historic risk in 2035--2044}
+%   \vspace{-2.5mm}
+%   \begin{adjustwidth}{-\leftframemargin}{-\rightframemargin}
+%     \centering
+%     \includegraphics[width=14.5cm]{figures/adaptation/map_protection_bins_shift_masked.pdf}
+%     %\drawmapcorrection
+%   \end{adjustwidth}
+%   \vspace{-4mm}
+%   \begin{messages}[-8mm]
+%     \arrowitem Highest adaptive pressure in India and Indonesia
+%     \arrowitem Also some rich countries have to adapt
+%   \end{messages}
+%   \begin{sources}
+%   \item[] \citationfloodingadaptation
+%   \end{sources}
+% \end{frame}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-command-default: "Make"
+%%% End:

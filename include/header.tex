@@ -1,0 +1,158 @@
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,ngerman,shorthands=off]{babel}
+\usepackage[autostyle]{csquotes}
+\MakeOuterQuote{"}
+
+\usepackage{amsmath}
+% interesting options:
+%   leqno Place equation numbers on the left.
+%   reqno Place equation numbers on the right.
+%   fleqn Position equations at a fixed indent from the left margin rather than centered in the text column
+\usepackage{amsfonts, amsthm, amssymb}
+\usepackage{xcolor}
+\usepackage{fixmath} % fixes some Greek letters and provides \mathbold
+\usepackage{mathtools}
+\usepackage{lmodern}
+%\usepackage{charter} % use charter font
+\usepackage{ebgaramond}
+\usepackage[tracking=true, % Fonts: hyphenatable letterspacing
+expansion=true,            % Fonts: better grey value
+protrusion=true,           % Fonts: margin kerning
+babel]{microtype}
+\usepackage{tikz,setspace}
+\usetikzlibrary{calc,decorations.shapes}
+\usepackage{pdfpages}
+\usepackage{ifdraft} % provides \ifdraft
+\usepackage{xifthen}
+\usepackage{etoolbox}
+\usepackage{longtable}
+\usepackage{changepage}
+\usepackage{emptypage} % clears headers/footers on empty pages
+%\usepackage{pgfplots}\pgfplotsset{compat=1.13}
+\usepackage{xfrac} % provides \sfrac for a/b
+\usepackage{fix-cm} % fixes some font size issues
+\usepackage[shortcuts]{extdash} % provides \-/ for breaking and \=/ for non-breaking hyphens
+\usepackage{relsize}
+\usepackage[rightcaption]{sidecap}
+\usepackage{supertabular}
+% \usepackage{natbib} % provides \citet, \citep
+
+%\usepackage[osf,sc]{mathpazo}
+%\usepackage{pdfcomment}
+%\usepackage{flafter} % place floats at or after their appearance in code
+\usepackage{booktabs} % better rules in tables
+\usepackage{textcase} % provides \MakeTextUppercase
+%\usepackage{silence} % provides \WarningFilter{PACKAGE}{WARNINGMESSAGE}
+\usepackage[list=no]{caption}
+\usepackage{graphicx}
+\usepackage[position=top]{subfig}
+\usepackage{adjustbox}
+\usepackage{enumerate} % roman numbering in enumerations
+\usepackage{colortbl} % color in tables
+\usepackage{multirow}
+%\usepackage{siunitx} % helps with SI units and number formats
+\usepackage[section]{placeins} % provides \FloatBarrier to stop floats from passing certain barriers
+%\usepackage{indentfirst} %	indent also the first paragraph of any chapter/section
+\usepackage{url}
+\usepackage{rotating}
+\usepackage{subfiles}
+\usepackage{anyfontsize}
+\usepackage{hyphenat} % provides \nohyphens
+\usepackage{fnpct} % nicer footnote typesetting
+\usepackage{marginnote} % provides \marginnote
+\usepackage{layout} % use with \layout to show current layout
+% always include subfiles using \subfile
+% these should look like
+%   \documentclass[<mainfile>]{subfiles}
+%   \begin{document}
+%      ...
+%   \end{document}
+\usepackage[normalem]{ulem} % for underlining
+\usepackage{gensymb}
+\usepackage{xspace}
+\usepackage{chngcntr} % provides \counterwithout
+%\usepackage[backgroundcolor=white,bordercolor=none,textsize=small]{todonotes}
+
+%\usepackage[mathlines]{lineno} % pagewise,modulo % enable numbering of text and display math
+%\linenumbers
+
+\frenchspacing % disabled additional space after periods
+\clubpenalty = 10000 % disable single lines at the start of a paragraph (Schusterjungen)
+\makeatletter
+\@clubpenalty = 10000 % LaTeX uses `\@clubpenalty to restore the value of `\clubpenalty`
+\makeatother
+\widowpenalty 10000  % disable single lines at the end of a paragraph (Hurenkinder)
+\displaywidowpenalty = 10000 % do not leave formulas alone
+\raggedbottom % do not spread paragraphs
+\numberwithin{equation}{section} % group equation numbering by section
+%\numberwithin{figure}{chapter} % group figure numbering by section
+%\usepackage[defaultlines=4,all]{nowidow}
+
+% should be loaded last:
+%\usepackage{varioref} % provides \vref as a "clever" reference for sections (e.g. on opposite page)
+\usepackage{hyperref} % references as hyperlinks and provides \autoref to add "section", "figure", ... to \ref
+% use \texorpdfstring{$E=mc^2$}{E=mc2} when necessary
+\usepackage[nameinlink,noabbrev]{cleveref} % provides \cref{..,..} to add "section", "figure", ... to \ref and \crefrange{...}{...}, \cpageref, \cpagerefrange, \Cref, \labelref
+%\usepackage{showkeys} % shows label and ref information for review (all 5 lines needed)
+%\makeatletter
+%  \SK@def\Cref#1{\SK@\SK@@ref{#1}\SK@Cref{#1}}%
+%  \SK@def\cref#1{\SK@\SK@@ref{#1}\SK@cref{#1}}%
+%\makeatother
+% make sure to use the "right" commands:
+%\let\ref\undefined
+%\let\eqref\undefined
+%\let\pageref\undefined
+
+\hypersetup{pdfauthor={Christian Otto}}
+\hypersetup{colorlinks=true}
+\hypersetup{linkcolor=tableaured!50!black}
+\hypersetup{urlcolor=tableaublue!50!black}
+\hypersetup{citecolor=tableaublue!50!black}
+\hypersetup{linktoc=all}
+
+\definecolor{tableaublack}{HTML}{181818}
+\definecolor{tableaublue}{HTML}{1F77B4}
+\definecolor{tableauorange}{HTML}{FF7F0E}
+\definecolor{tableaugreen}{HTML}{2CA02C}
+\definecolor{tableaured}{HTML}{D62728}
+\definecolor{tableaupurple}{HTML}{9467BD}
+\definecolor{tableaubrown}{HTML}{8C564B}
+\definecolor{tableaumagenta}{HTML}{E377C2}
+\definecolor{tableaugray}{HTML}{7F7F7F}
+\definecolor{tableaugrey}{HTML}{7F7F7F}
+\definecolor{tableaulime}{HTML}{BCBD22}
+\definecolor{tableaucyan}{HTML}{17BECF}
+\definecolor{tableaulightblue}{HTML}{AEC7E8}
+\definecolor{tableaulightorange}{HTML}{FFBB78}
+\definecolor{tableaulightgreen}{HTML}{98DF8A}
+\definecolor{tableaulightred}{HTML}{FF9896}
+\definecolor{tableaulightpurple}{HTML}{C5B0D5}
+\definecolor{tableaulightbrown}{HTML}{C49C94}
+\definecolor{tableaulightmagenta}{HTML}{F7B6D2}
+\definecolor{tableaulightgray}{HTML}{C7C7C7}
+\definecolor{tableaulightgrey}{HTML}{C7C7C7}
+\definecolor{tableaulightlime}{HTML}{DBDB8D}
+\definecolor{tableaulightcyan}{HTML}{9EDAE5}
+
+% files including header should also include:
+% \input{header}
+% \title{}
+% \author{}
+% \hypersetup{pdftitle={}}
+% \hypersetup{pdfsubject={}}
+% \hypersetup{pdfkeywords={}{}{}}
+% \graphicspath{{./figures/}}
+% ...
+% \bibliographystyle{plainnat}
+
+% \ifx\whatsoever\empty\relax\else\relax\fi
+\hyphenation{dis-equi-lib-ri-um dis-ag-gre-gat-ed dis-ag-gre-gate dis-ag-gre-ga-tion adap-ta-tion mod-el ac-cli-mate}
+
+\urlstyle{customurl}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../thesis"
+%%% TeX-command-default: "Make"
+%%% End:

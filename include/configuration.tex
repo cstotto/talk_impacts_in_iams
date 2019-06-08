@@ -1,0 +1,381 @@
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage[default]{lato}
+\usepackage{multicol}
+\usepackage[nomessages]{fp}
+\usepackage{sfmath}
+\usepackage{marvosym} % \MVRightarrow
+\usepackage{pgfpages}
+\usepackage[duration=8]{pdfpcnotes}
+% \usepackage{pdfpc-commands}
+
+\makeatletter
+
+% switch default weight to light
+\renewcommand{\mddefault}{m}
+\renewcommand{\bfdefault}{m}
+
+% Lengths:
+\newlength{\borderheight}
+\newlength{\cornerradius}
+\newlength{\fullframewidth}
+\newlength{\leftframemargin}
+\newlength{\maxfigureheight}
+\newlength{\outlinewidth}
+\newlength{\rightframemargin}
+\newlength{\zoomoverlaygap}
+\newlength{\zoomoverlayheight}
+\newlength{\zoomoverlayshift}
+\newlength{\zoomoverlaywidth}
+\setlength{\borderheight}{8mm}
+\setlength{\cornerradius}{0.6mm}
+\setlength{\fboxsep}{0mm}
+\setlength{\fullframewidth}{\textwidth+\Gm@lmargin+\Gm@rmargin}
+\setlength{\leftframemargin}{\Gm@lmargin}
+\setlength{\maxfigureheight}{0.75\paperheight}
+\setlength{\outlinewidth}{0.5mm}
+\setlength{\rightframemargin}{\Gm@rmargin}
+\setlength{\zoomoverlaygap}{5mm}
+\setlength{\zoomoverlayheight}{\zoomoverlaywidth/3*2}
+\setlength{\zoomoverlayshift}{-10mm}
+\setlength{\zoomoverlaywidth}{50mm}
+
+\setbeamercolor{background canvas}{bg = white}
+\setbeamercolor{normal text}{fg = black}
+\setbeamercolor{frametitle}{fg = tableaublue!80!black}
+\setbeamercolor{title}{fg = black}
+\setbeamercolor{section title}{fg = black}
+\setbeamercolor{section in toc}{fg = black}
+\setbeamercolor{section in toc shaded}{fg = black}
+\setbeamercolor{enumerate item}{fg = tableaublue}
+\setbeamercolor{enumerate subitem}{fg = tableaublue}
+\setbeamercolor{enumerate subsubitem}{fg = tableaublue}
+\setbeamercolor{itemize item}{fg = tableaublue}
+\setbeamercolor{itemize subitem}{fg = tableauorange}
+\setbeamercolor{itemize subsubitem}{fg = tableaugreen}
+\setbeamercolor{caption name}{fg = tableaublue}
+\setbeamercolor{block title}{fg = tableaublue}
+\setbeamercolor{block title example}{fg = tableaugreen}
+
+\setbeamerfont{frametitle}{size=\fontsize{13pt}{14pt},series=\bfseries}
+\setbeamerfont{footline}{size=\fontsize{7pt}{7pt}}
+\setbeamerfont{normal text}{size=\fontsize{11pt}{11pt}}
+\setbeamerfont{enumerate item}{series=\bfseries}
+
+\setbeamertemplate{items}[square]
+\setbeamertemplate{itemize item}{\tikz{\clip (-.04,-.04) rectangle (.2,.2);\fill[color=tableaublue] rectangle(.18,.18);}}
+\setbeamertemplate{itemize subitem}{\tikz{\clip (-.04,-.04) rectangle (.18,.18);\fill[color=tableauorange] rectangle(.16,.16);}}
+\setbeamertemplate{itemize subsubitem}{\tikz{\clip (-.04,-.04) rectangle (.16,.16);\fill[color=tableaugreen] rectangle(.14,.14);}}
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamertemplate{navigation symbols}{}
+% \newenvironment{xplainframe}\frametitle{\bgroup\setbeamertemplate{background}{}\begin{frame}[plain]}{\end{frame}\egroup}
+\setbeamertemplate{headline}{\includeedges}
+\setbeamertemplate{sidebar canvas right}{}
+\setbeamertemplate{frametitle}{\vspace*{6mm}\hspace{-1.5mm}\insertframetitle\vspace{2.5mm}}
+\setbeamertemplate{footline}{\vbox to \borderheight {}}
+\setbeamertemplate{note page}{
+  \insertslideintonotes{0.4}\par
+  {\large\insertframetitle}\par
+  %\hrule\par
+  \insertnote
+}
+\setbeamertemplate{title page}{
+  \tikz[baseline,overlay]{
+    \node[align=center] at ( $(current page.center)+(0mm,5mm)$ ) {%
+      \fontsize{17pt}{21pt}\selectfont
+      \textcolor{tableaublue}{\textbf{\inserttitle}}
+    };
+    % \node[align=center] at ( $(current page.center)+(0mm,-5mm)$) {%
+    %   \fontsize{15pt}{16pt}\selectfont
+    %   \textcolor{black}{\insertsubtitle}
+    % };
+    \node[align=center] at ( $(current page.center)+(0mm,-20mm)$ ) {%
+      \begin{minipage}{10cm}
+        \centering
+        \fontsize{11pt}{15pt}\selectfont
+        \textcolor{black}{\insertauthor}\\[1cm]
+        \fontsize{11pt}{15pt}\selectfont
+        \textcolor{tableaublue}{\insertdate}
+      \end{minipage}
+    };
+  }
+  \includeedges[0]
+}
+\setbeamertemplate{section page}{%
+  \vskip1cm
+  \begin{centering}
+    \begin{beamercolorbox}[sep=12pt,center]{section title}
+      \usebeamerfont{section title}\insertsection\par
+    \end{beamercolorbox}
+  \end{centering}
+}
+
+\usetikzlibrary{
+  arrows,
+  arrows.meta,
+  shapes.geometric,
+  positioning,
+  fit,
+  calc,
+  decorations.shapes,
+  decorations.pathreplacing
+}
+
+\hypersetup{pdfpagemode=UseNone} % don't show bookmarks on initial view
+\tikzstyle{every picture}+=[remember picture]
+\everymath{\displaystyle}
+
+\DeclareDocumentCommand{\overlay}{ O{north west} O{north west} m m }{
+  \tikz[baseline,overlay]\node[shift={(#3)},anchor=#2] at (current page.#1) {%]
+    #4%
+    \par\vspace{0mm}
+  };
+}
+
+\DeclareDocumentEnvironment{overlay}{ O{north west} O{north west} m }{
+  \tikz[baseline,overlay]\node[shift={(#3)},align=left,anchor=#2] at (current page.#1) \bgroup
+}{
+  \par\vspace{0mm}
+  \egroup;
+}
+
+\newcommand{\drawmapcorrection}{
+  \tikz[baseline,overlay]{
+    \fill[fill=white] ($(current page.west)+(1mm,-7mm)$) rectangle ($(current page.west)+(22mm,13mm)$);
+    \fill[fill=white] ($(current page.east)+(-31mm,-12mm)$) rectangle ($(current page.east)+(-28mm,-5mm)$);
+    \fill[fill=white] ($(current page.center)+(7mm,-23mm)$) rectangle ($(current page.center)+(14mm,-17mm)$);
+  }
+}
+
+\newcommand{\arrowitem}{\item[\raisebox{0.75pt}{\MVRightarrow}]}
+
+\DeclareDocumentCommand{\culine}{ O{1pt} O{-0.75ex} m }{%
+  \bgroup\markoverwith{\textcolor{#3}{\rule[#2]{2pt}{#1}}}\ULon%
+}
+
+\newcommand{\anchor}[1]{\tikz\node[coordinate] (#1) {};}
+\DeclareDocumentCommand{\connect}{ O{->} O{} m m }{
+  \tikz[baseline,overlay]\path[#1] (#3) edge[#2] (#4);
+}
+
+\DeclareDocumentCommand{\addfooter}{ m }{
+  \begin{overlay}[south east][east]{-6mm,\borderheight/2-0.025}
+    \textcolor{white}{
+      \fontsize{7pt}{7pt}\selectfont
+      #1
+    }
+  \end{overlay}
+}
+
+\DeclareDocumentEnvironment{messages}{ O{-3mm} }{
+  %\begin{overlay}[south][south]{0mm,\borderheight-4.5mm}
+  %\begin{minipage}{0.65\textwidth}
+  \begin{itemize}
+    \centering\vspace{#1}
+    \setlength{\itemsep}{0.2em}
+  }{
+  \end{itemize}
+  % \end{minipage}
+  % \end{overlay}
+}
+
+\DeclareDocumentCommand{\formatsource}{ O{} m m m m }{
+  % #1 (#2). \textbf{#3}, #4.
+  \textbf{#2 (#3)}%
+  \ifthenelse{\equal{#1}{nodot}}{}{.}
+}
+
+\newsavebox{\sourcesbox}
+\DeclareDocumentEnvironment{sources}{}{
+  \begin{overlay}[south east][south east]{-9mm,\borderheight-5.5mm}
+    % \begin{lrbox}{\sourcesbox}
+    \begin{minipage}{\textwidth}
+      \fontsize{7.5pt}{10pt}\selectfont
+      \begin{itemize}
+        \setlength{\itemsep}{0.3em}
+        \raggedleft
+      }{
+      \end{itemize}
+      \mbox{}
+    \end{minipage}
+    % \end{lrbox}
+    % \begin{overlay}[south east][south east]{-6mm,\borderheight-1.67mm}
+    %   \usebox{\sourcesbox}
+  \end{overlay}
+  % \phantom{
+  % \usebox{\sourcesbox}
+  % }
+}
+
+\DeclareDocumentCommand{\includeedges}{ O{1} }{
+  \tikz[baseline,overlay]{
+    \ifthenelse{\equal{#1}{1}}{
+      \draw[color=black,opacity=0.6] ($(current page.south west)+(22mm,\borderheight)$) -- ($(current page.south east)+(-11mm,\borderheight)$);
+      \node[anchor=west,inner sep=0] at ($(current page.south west)+(3mm,\borderheight-1.02mm)$) {%
+        \includegraphics[width=17.5mm]{figures/logo_pik_small}
+      };
+      \node[anchor=west,inner sep=0] at ($(current page.south west)+(68mm,\borderheight/2)$) {%
+        %\includegraphics[height=4mm]{figures/logo_rd4}
+      };
+      \node[anchor=west,opacity=0.6] at ( $(current page.south west)+(78mm,\borderheight/2)$) {%
+          \insertdate
+      };
+      \node[anchor=east,opacity=0.6] at ( $(current page.south east)+(-11mm,\borderheight/2)$) {%
+        % \insertpagenumber
+        \insertframenumber
+      };
+    }{
+      \node[anchor=north west,inner sep=0] at ($(current page.north west)+(4mm,-11.5mm)$) {%
+        \includegraphics[width=80mm]{figures/logo_pik}
+      };
+      % \draw[color=black,opacity=0.6] ($(current page.south west)+(3mm,15mm)$) -- ($(current page.south east)+(-3mm,15mm)$);
+      % \node[anchor=west,inner sep=0,opacity=0.6] at ($(current page.south west)+(6mm,7.5mm)$) {%
+      %   %\includegraphics[width=21mm]{figures/logo_leibniz}
+      % };
+    }
+  }
+  \ifthenelse{\equal{#1}{1}}{}{
+    \vbox to \borderheight {}
+  }
+}
+
+\DeclareDocumentCommand{\zoomoverlay}{ m }{
+  \tikz[baseline,overlay]{
+    \path[fill=white] ($(current page.west)+(1mm,30mm)$) rectangle ($(current page.center)+(0,-30mm)$);
+    % \tikzset{
+    % photo/.style={
+    % inner sep=0,
+    % rounded corners=0.4mm,
+    % },
+    %   outline/.style={
+    %   draw=white,
+    %   line width=\outlinewidth*2,
+    %   line cap=round
+    % }
+    % }
+    %   \fill[white] ($(current page.center)+(-40mm,30mm)$) rectangle ($(current page.center)+(30mm,-30mm)$);
+    %   \insertzoom{USA}{58 349 296 8}{$(current page.center)+(\zoomoverlayshift-\zoomoverlaywidth/2-\zoomoverlaygap/2,\zoomoverlayheight/2+\zoomoverlaygap/2)$}{#1}
+    %   \insertzoom{EUR}{279 349 75 8}{$(current page.center)+(\zoomoverlayshift+\zoomoverlaywidth/2+\zoomoverlaygap/2,\zoomoverlayheight/2+\zoomoverlaygap/2)$}{#1}
+    %   \insertzoom{ASI}{279 8 75 349}{$(current page.center)+(\zoomoverlayshift+\zoomoverlaywidth/2+\zoomoverlaygap/2,-\zoomoverlayheight/2-\zoomoverlaygap/2)$}{#1}
+    %   \insertzoom{AFR}{58 8 296 349}{$(current page.center)+(\zoomoverlayshift-\zoomoverlaywidth/2-\zoomoverlaygap/2,-\zoomoverlayheight/2-\zoomoverlaygap/2)$}{#1}
+    \node[inner xsep=5mm,fill=white,xshift=-2mm] at (current page.center) {
+      % \includegraphics[width=100mm,clip,trim={111 5 123 5}]{#1}
+      \includegraphics[width=100mm,clip,trim={90 5 100 5}]{#1}
+    };
+  }
+}
+
+\define@cmdkeys{citation}{
+  authors,
+  year,
+  title,
+  journal,
+  volume,
+  underreview,
+  break,
+  type,
+}{}
+\presetkeys{citation}{
+  authors=,
+  year=,
+  title=,
+  journal=,
+  volume=,
+  underreview=,
+  break=,
+  type=,
+}{}
+
+\DeclareDocumentCommand{\citationformat}{ m }{%
+  \setkeys{citation}{#1}%
+  \ifthenelse{\equal{\cmdKV@citation@type}{highlight}}{%
+    \def\highlightauthor{\culine[0.67pt][-0.5ex]{tableaugray}}%
+  }{%
+    \ifthenelse{\equal{\cmdKV@citation@type}{highlightschema}}{%
+      \def\highlightauthor{\culine[0.67pt][-0.5ex]{tableaugray}}%
+    }{%
+      \def\highlightauthor{\relax}%
+    }
+  }
+  \cmdKV@citation@authors%
+  \ifthenelse{\equal{\cmdKV@citation@year}{}}{%
+    .
+  }{
+    { }(\cmdKV@citation@year).
+  }%
+  \cmdKV@citation@break
+  \ifthenelse{\equal{\cmdKV@citation@type}{long}}{
+    \emph{\cmdKV@citation@title}.
+    \cmdKV@citation@break
+  }{}
+  \textbf{\cmdKV@citation@journal}%
+  \ifthenelse{\equal{\cmdKV@citation@underreview}{}}{}{
+    \cmdKV@citation@underreview
+  }%
+  \ifthenelse{\equal{\cmdKV@citation@type}{long}}{%
+    \ifthenelse{\equal{\cmdKV@citation@volume}{}}{}{%
+      , \cmdKV@citation@volume%
+    }%
+  }{}%
+  .%
+}
+
+\def\convertto#1#2{\strip@pt\dimexpr #2*65536/\number\dimexpr 1#1}
+
+
+\definecolor{formulagrey}{HTML}{666666}
+
+\newcommand{\setlistdefaults}[1]{
+  \ifthenelse{\equal{#1}{}}{
+    \ifnum\@itemdepth=1\relax
+    \setlength\itemsep{0.75em}
+    \else
+    \ifnum\@itemdepth=2\relax
+    \setlength\itemsep{0.4em}
+    \else
+    \ifnum\@itemdepth=3\relax
+    \setlength\itemsep{0.3em}
+    \fi\fi\fi
+  }{
+    \setlength\itemsep{#1}
+  }
+}
+\DeclareDocumentEnvironment{enum}{ O{} }{\begin{enumerate} \setlistdefaults{#1}}{\end{enumerate}}
+\DeclareDocumentEnvironment{items}{ O{} }{\begin{itemize} \setlistdefaults{#1}}{\end{itemize}}
+
+\tikzstyle{acclimatearrow} = [
+arrows={-Stealth},
+line width=1.5pt,
+draw=tableaugrey!50!black
+]
+
+\DeclareDocumentCommand{\insertbackupslides}{ m m }{
+  %\begin{frame}
+  %  \centering\fontsize{64pt}{64pt}\selectfont
+  %  #1
+  %\end{frame}
+  \input{#2}
+}
+
+\DeclareDocumentCommand{\sourcedstatement}{ m m }{
+\item
+  \begin{minipage}[t]{0.6\textwidth}
+    #1
+  \end{minipage}
+  \hspace{6mm}
+  \begin{minipage}[t]{0.3\textwidth}
+    \color{black!33!white}
+    \fontsize{8pt}{11pt}\selectfont
+    #2
+    \mbox{}
+  \end{minipage}
+}
+
+\makeatother
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../talk"
+%%% TeX-command-default: "Make"
+%%% End:
+
