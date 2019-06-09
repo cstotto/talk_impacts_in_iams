@@ -183,19 +183,28 @@ final,
 
 \begin{frame}
   \frametitle{Step 4: From Event-Based to Temperature Dependent Damages}
+  \begin{minipage}[t]{.65\linewidth}
+    \vspace{0pt}
   \begin{itemize}
   \item Each RCP-SSP-GCM combination provides \textbf{unique} mapping $t \rightarrow T$
     \arrowitem For each temperature interval $\Delta T$ there is associated set of cumulative damages
   \end{itemize}
     \begin{equation*}
    \mbDA_{j}(\Delta T)\equiv\lbrace \DA_{j,t}\, \vert\, t' \text{ for } T(t')\in\Delta T \rbrace
-\end{equation*}
+ \end{equation*}
+ \vspace{-20pt}
 \begin{itemize}
 \item Ensemble average over set members $\mbDA_{j}(\Delta T)$ yields country level damages over temperature interval  
 \end{itemize}
 \begin{equation*}
   \langle \DA_{j}\rangle(\Delta T)\equiv\big\langle \DA_{j,t}\big\rangle_{\mbDA_{j}}(\Delta T)
 \end{equation*}
+\end{minipage}\hfill
+\begin{minipage}[t]{.35\linewidth}
+  \vspace{20pt}
+  \centering
+  \includegraphics[width=\linewidth]{figures/damage_averaging}
+\end{minipage}
 \end{frame}
 
 \begin{frame}
