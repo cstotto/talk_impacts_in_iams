@@ -1,0 +1,106 @@
+\usepackage{xspace} 
+\newcommand{\LArrow}{{\Large $\tc{hervor}{\Rightarrow}$~}}
+\newcommand{\LASpace}{\\\hspace*{1.6em}}
+\providecommand{\herv}[1]{\tc{hervor}{#1}}
+\providecommand{\on}[1]{\operatorname{#1}}
+\newcommand{\todo}[1]{{\color{red!80!black} TODO: {\itshape\color{orange!70!black} #1}}}
+\DeclareRobustCommand{\acclimate}{\emph{acclimate}\xspace}
+\DeclareRobustCommand{\Acclimate}{\emph{Acclimate}\xspace}
+
+\usepackage{xspace}  %leerzeichen bei bedarf, aber nicht vor satzeichen
+\providecommand{\tc}[2]{\textcolor{#1}{#2}}
+\usepackage[]{units}
+\providecommand{\myunit}[1]{$\,$\unit{#1}}
+\providecommand{\myunitfrac}[2]{$\,\frac{\unit{#1}}{\unit{#2}}$}
+
+%Mathoperators
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\DDt}{\operatorname{D_{\Delta t}}}
+\newcommand{\tDDt}{\operatorname{\tilde{D}_{\Delta t}}}
+
+\newcommand{\Cov}{\operatorname{Var}}
+\newcommand{\mbR}{\mathbb{R}}
+\newcommand{\mcF}{\mathcal{F}}
+%\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\renewcommand{\minof}[2]{\min\left[#1\,,\,#2\right]}
+\newcommand{\minofthree}[3]{\min\left[#1\,,\,#2\,,\,#3\right]}
+\renewcommand{\maxof}[2]{\max\left[#1\,,\,#2\right]}
+
+\newcommand{\first}{1^{\operatorname{st}}}
+\newcommand{\secnd}{2^{\operatorname{nd}}}
+\newcommand{\third}{3^{\operatorname{rd}}}
+\newcommand{\nth}{\text{n}^{\operatorname{th}}}
+%\newcommand{\hPSD}{\hyperlink{PSD}{PSD}\xspace}
+
+%##########################
+% Real and imaginary parts
+%##########################
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+%#############################
+% Quantities
+%#############################
+\newcommand{\DA}{D^A}
+\newcommand{\DK}{D^K}
+\newcommand{\bA}{\beta^A}
+\newcommand{\dA}{\delta^A}
+
+\newcommand{\newleftside}{\ifthenelse{\isodd{\thepage}}{\newpage}{\newpage\phantom{placeholder}\thispagestyle{empty} \newpage}}
+\newcommand{\newrightside}{\ifthenelse{\isodd{\thepage}}{\newpage\phantom{placeholder}\thispagestyle{empty} \newpage}{\newpage}}
+%
+\DeclareCaptionLabelFormat{cont}{#1~#2~(cont.)}
+
+\newcommand{\define}{:=}
+\newcommand{\set}{:=}
+\newcommand{\from}{\leftarrow}
+\renewcommand{\to}{\rightarrow}
+\newcommand{\bndollar}[1]{\$#1bn}
+
+\makeatletter
+\newcommand{\colorwave}[1][blue]{\bgroup \markoverwith{\lower3.5\p@\hbox{\sixly \textcolor{#1}{\char58}}}\ULon}
+\font\sixly=lasy6
+\makeatother
+\newcommand{\todoline}{\colorwave[red]}
+
+\newcommand{\captioncr}{{\protect\\}}
+\AtBeginDocument{\renewcommand\appendixname{Appendix~}}
+\def\UrlBreaks{\do\/\do-\/\do_}
+
+\makeatletter
+% for aligning in math modes:
+\newcommand{\pushright}[1]{\ifmeasuring@#1\else\omit\hfill$\displaystyle#1$\fi\ignorespaces}
+\newcommand{\pushcenter}[1]{\ifmeasuring@#1\else\omit\hfill$\displaystyle#1$\hfill\fi\ignorespaces}
+\newcommand{\pushleft}[1]{\ifmeasuring@#1\else\omit$\displaystyle#1$\hfill\fi\ignorespaces}
+% instead of eqnarray use:
+% \begin{alignat}{4} a&&\pushcenter{=}&b \end{alignat}
+\makeatother
+
+\newcommand{\annot}[2][]{%
+  \pdfannot width \linewidth height 2\baselineskip depth 0pt{%
+    /Subtype/Text%
+    /Open false
+    /Name /Comment%
+    /CA .4%
+    /C [.3 .6 .9]%
+    /T (\pdfescapestring{#1})%
+    /Contents(\pdfescapestring{\detokenize{#2}})%
+  }
+}
+\ifdefined\note\relax\else
+\newcommand\note[1]{\marginnote{\begin{minipage}{0.8\marginparwidth}\footnotesize\raggedright{}#1\end{minipage}}}
+\fi
+
+%#############################
+% Sets
+%#############################
+\newcommand{\mbC}{\mathbb{C}}
+\newcommand{\mbN}{\mathbb{N}}
+\newcommand{\mbDA}{\mathbb{D}^A}
+%%%%%%%%%%%%%%%%
+% Farben
+%%%%%%%%%%%%%%%%
+\definecolor{dunkelgrau}{rgb}{0.8,0.8,0.8}
+\definecolor{hellgrau}{RGB}{204,216,226}
