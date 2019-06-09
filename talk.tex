@@ -6,7 +6,7 @@ final,
 ]{beamer}
 \def\usebeamer{1}
 \input{include/header}
-
+\linespread{1.2}
 % \newboolean{consumer}
 % \newboolean{onlyagent}
 % \newboolean{showshock}
@@ -39,14 +39,14 @@ final,
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{frame}
-  \frametitle{Possible ways forward}
+  \frametitle{Possible Ways Forward}
   \begin{enumerate}
-  \item Account for persistencies by empirically estimate impacts channels (capital stock, total factor productivities etc.) accounted in IAMs
+  \item Account for persistencies by empirically estimate the impact of climate extremes on impact channels (capital stock, total factor productivities etc.) accounted in IAMs at different levels of global warming
   \item Estimate cumulative GDP losses for each levels of warming and use these as IAM input
   \item Endogenously explain empirically observed persistencies by `specialized' impact models 
   \end{enumerate}
   \begin{itemize}
-\arrowitem 1. appears feasible way forward for next evaluation
+\arrowitem 1. appears to be feasible way forward for next evaluation
   \end{itemize}
 \end{frame}
 
@@ -58,25 +58,28 @@ final,
   \vfill
   \begin{equation*}
     \label{eq:CD}
-    Y(\tau,T)\equiv \big(1-\DA(\tau,T)\big)A(\tau)\left[\big(1-\DK(\tau,T)\big)K(\tau) \right]^\alpha L(\tau)^{\alpha-1}
+    Y(\tau,T)\equiv \big(1-\tc{red}{\DA(\tau,T)}\big)A(\tau)\left[\big(1-\tc{red}{\DK(\tau,T)}\big)K(\tau) \right]^\alpha L(\tau)^{\alpha-1}
   \end{equation*}
   \vfill
-  \begin{minipage}[l]{.49\linewidth}
+  \begin{minipage}[l]{.45\linewidth}
+ % \begin{adjustwidth}{-\leftframemargin}{-\rightframemargin}
    \begin{itemize} 
    \item [$\tau$] Slow (decadal) timescale
    \item [$T$] Global temperature
-   \item [$A$] Total factor productivity
-   \item [$K$] Capital
+ %  \item [$A$] Total factor productivity
+ %  \item [$K$] Capital
+  % \item [$L$]  Labor
+  % \item [$\alpha$] Cobb-Douglas coefficient
    \end{itemize}
- \end{minipage}\hfill
- \begin{minipage}[r]{.49\linewidth}
-   \begin{itemize}
-   \item [$L$]  Labor
-   \item [$\alpha$] Cobb-Douglas coefficient    
-   \item [$\DA$] \tc{red}{Relative} damages to $A$ 
-   \item [$\DK$] \tc{red}{Relative} damages to capital
+ %\end{adjustwidth}
+\end{minipage}\hfill
+\begin{minipage}[l]{.45\linewidth}
+  \begin{itemize}
+  \item [$\tc{red}{\DA}$] \tc{red}{Relative} damages to $A$ 
+   \item [$\tc{red}{\DK}$] \tc{red}{Relative} damages to capital
    \end{itemize}
  \end{minipage}
+ 
  \vfill
  \begin{itemize}
  \item Assumption: Climate extremes have an instantaneous impact on $K$, and have persistent impacts on $A$, GDP.
@@ -86,7 +89,7 @@ final,
 
 
 \begin{frame}
-  \frametitle{Climate Damages from ISIMIP simulations}
+  \frametitle{Climate Damages From ISIMIP Simulations}
   \begin{enumerate}
   \item Estimate persistencies
   \item Sum damages across categories
@@ -99,11 +102,12 @@ final,
 \begin{frame}
   \frametitle{Step 1: Estimate Persistencies}
   \begin{minipage}[r]{.6\linewidth}
+    \vspace{0pt}
   \begin{itemize}
   \item Panel regressions with lagged variables
   \end{itemize}
   \begin{equation*}
-    \ln\big(A_{j,t})\big) = \gamma_j + \delta_{t} + \theta_j t + \sum_{l=0}^{L}\bA_{l}E_{j,t-l}+\epsilon_{j,t}
+    \ln\big(A_{j,t} \big) = \gamma_j + \delta_{t} + \theta_j t + \sum_{l=0}^{L}\bA_{l}E_{j,t-l}+\epsilon_{j,t}
   \end{equation*}
   \begin{itemize}
   \item Cumulative impact $k$ years after exposure
@@ -113,14 +117,20 @@ final,
   \end{equation*}
 \end{minipage}\hfill
 \begin{minipage}[r]{.39\linewidth}
+    \vspace{-30pt}
+  \centering
+  \includegraphics[width=.75\textwidth]{figures/sketch_let_effect}
+  \vfill
+  \includegraphics[width=.75\textwidth]{figures/ind_windspeed}
 \end{minipage}
 \end{frame}
 
 \begin{frame}
   \frametitle{Step 2: Sum Damages Across Categories}
-    \begin{minipage}[r]{.6\linewidth}
+  \begin{minipage}[t]{.6\linewidth}
+    \vspace{0pt}
   \begin{itemize}
-  \item Cross-sectional panel regressions
+  \item Affected people $P_j$ as unified hazard indicator across categories
   \end{itemize}
   \begin{equation*}
     \ln\big(A_{j,t}\big) = \gamma_j + \delta_{t} + \theta_j t + \sum_{l=0}^{L}\bA_{l}\tc{red}{P_{j,t-l}}+\epsilon_{j,t}
@@ -132,19 +142,29 @@ final,
     P_{i,t-l}\equiv\frac{1}{\operatorname{Pop}_{i,t-l}}\sum_{c\in\mbC} P_{i,t-L}
   \end{equation*}
 \end{minipage}\hfill
-\begin{minipage}[r]{.39\linewidth}
+\begin{minipage}[t]{.39\linewidth}  
+  \vspace{-30pt}
+  \raggedleft
+  \tc{tableaublue}{Indicator: windspeed}
+  \centering
+  \includegraphics[width=.6\textwidth]{figures/ind_windspeed}
+  \vfill
+  \raggedleft
+  \tc{tableaublue}{Indicator: Affected people}
+  \centering
+  \includegraphics[width=.6\textwidth]{figures/ind_affected_people}
 \end{minipage}
 \end{frame}
 
 \begin{frame}
   \frametitle{Step 3: Timeseries of Cumulative Damages}
-      \begin{minipage}[r]{.6\linewidth}
+      \begin{minipage}[l]{\linewidth}
         \begin{itemize}
   \item For simplicity assume:\\ 1 GCM $+$ SSP2 $+$ 1 impact model for each category $c$          
-  \item Timeseries of \emph{relative} cumulative damages for country $j$ for \emph{one} impact realization $\lbrace P\rbrace_{j,b,t}$  
+  \item Timeseries of \emph{relative} cumulative damages for country $j$ for \emph{one} impact realization up to time $t$ $\lbrace P\rbrace_{j,t}$  
   \end{itemize}
   \begin{equation*}
-     \DA_{j,t,d}\left(\lbrace P\rbrace_{j,b,t}\right)\equiv 1 - \ \prod_{n=0}^{t}\left(1-\dA_{j,t-n}\right)
+     \DA_{j,t}\left(\lbrace P\rbrace_{j,t}\right)\equiv 1 - \ \prod_{n=0}^{t}\left(1-\dA_{j,t-n}\right)
    \end{equation*}
    \begin{itemize}
 \item  $\dA_{j,t-n}$ denotes the `instantaneous' damage caused by a series $\lbrace P_{j,t-m}^i\rbrace_{m=0}^L$ of hazards   
@@ -157,7 +177,7 @@ final,
 %   \end{itemize}
 
 \end{minipage}\hfill
-\begin{minipage}[r]{.39\linewidth}
+\begin{minipage}[r]{0\linewidth}
 \end{minipage}
 \end{frame}
 
@@ -168,22 +188,21 @@ final,
     \arrowitem For each temperature interval $\Delta T$ there is associated set of cumulative damages
   \end{itemize}
     \begin{equation*}
-   \mbDA_{j,d}(\Delta T_b)\equiv\lbrace \DA_{j,t,d}\, \vert\, t' \text{ for } T(t')\in\Delta T_b \rbrace
+   \mbDA_{j}(\Delta T)\equiv\lbrace \DA_{j,t}\, \vert\, t' \text{ for } T(t')\in\Delta T \rbrace
 \end{equation*}
 \begin{itemize}
-\item Ensemble average over set members $\mbDA_{j,d}(\Delta T_d)$ yields country level damages over temperature interval  
+\item Ensemble average over set members $\mbDA_{j}(\Delta T)$ yields country level damages over temperature interval  
 \end{itemize}
 \begin{equation*}
-  \langle \DA_{j}\rangle(\Delta T_b)\equiv\big\langle \DA_{j,t,d}\big\rangle_{\mbDA_{j}}(\Delta T_b)
+  \langle \DA_{j}\rangle(\Delta T)\equiv\big\langle \DA_{j,t}\big\rangle_{\mbDA_{j}}(\Delta T)
 \end{equation*}
-
 \end{frame}
 
 \begin{frame}
   \frametitle{Step 5: Integration to World Regions}
   \begin{itemize}
   \item IAMs operate on the level of world regions $r\in\mbN_r$
-    \arrowitem Average over the countries $j$ belonging to each region $r$ (weighted by average population or GDP or asset stock to obtain damages $\langle \DA_{r}\rangle(\Delta T_b)$ for $\Delta T_b$.
+    \arrowitem Average over the countries $j$ belonging to each region $r$ (weighted by average population or GDP or asset stock to obtain damages $\langle \DA_{r}\rangle(\Delta T)$ for $\Delta T$.
   \end{itemize}
 
   \begin{itemize}
