@@ -41,7 +41,7 @@ final,
 \begin{frame}
   \frametitle{Possible Ways Forward}
   \begin{enumerate}
-  \item Account for persistencies by empirically estimate the impact of climate extremes on impact channels (capital stock, total factor productivities etc.) accounted in IAMs at different levels of global warming
+  \item Empirically estimate relative importance and persistencies of impact channels (e.g., capital stock, total factor productivities, labor productivity etc.) accounted for in IAMs at different levels of global warming
   \item Estimate cumulative GDP losses for each levels of warming and use these as IAM input
   \item Endogenously explain empirically observed persistencies by `specialized' impact models 
   \end{enumerate}
@@ -53,7 +53,7 @@ final,
 \begin{frame}
   \frametitle{Production Functions in IAMs}
   \begin{itemize}
-  \item  Production system in IAMs often described by an aggregate production function of CES type
+  \item  Production system in IAMs often described by an aggregate production function of CES or Cobb-Douglas type
   \end{itemize}
   \vfill
   \begin{equation*}
@@ -91,11 +91,11 @@ final,
 \begin{frame}
   \frametitle{Climate Damages From ISIMIP Simulations}
   \begin{enumerate}
-  \item Estimate persistencies
+  \item Estimate persistence times
   \item Sum damages across categories
-  \item Timeseries of cumulative damages (country or subnational level)
-  \item From event-based to temperature dependent damages
-  \item Integration to world regions  
+  \item Obtain timeseries of cumulative damages (country or subnational level)
+  \item Transition From event-based to temperature dependent damages
+  \item Integrate to world regions  
   \end{enumerate}
 \end{frame}
 
@@ -104,17 +104,25 @@ final,
   \begin{minipage}[r]{.6\linewidth}
     \vspace{0pt}
   \begin{itemize}
-  \item Panel regressions with lagged variables
+  \item Panel regressions with time lags
   \end{itemize}
   \begin{equation*}
-    \ln\big(A_{j,t} \big) = \gamma_j + \delta_{t} + \theta_j t + \sum_{l=0}^{L}\bA_{l}E_{j,t-l}+\epsilon_{j,t}
+    \ln\big(A_{j,t} \big) = \gamma_j + \delta_{t} + \theta_j t + \sum_{l=0}^{L}\tc{red}{\bA_{l}E_{j,t-l}}+\epsilon_{j,t}
   \end{equation*}
-  \begin{itemize}
+  \begin{adjustwidth}{+.5\leftframemargin}{+.5\rightframemargin}
+    \begin{itemize}
+  \item[$\tc{red}{E_{j,t}}$] Biophysical hazard indicator\\ (e.g., windspeed for trop. cyclones)
+  \end{itemize}
+\end{adjustwidth}
+\begin{itemize}
   \item Cumulative impact $k$ years after exposure
   \end{itemize}
   \begin{equation*}
     \Omega_{t,k}\equiv\sum_{l=0}^{k}\beta_{t-L}
   \end{equation*}
+  \begin{sources}
+    \item Hsiang, 2014
+  \end{sources}
 \end{minipage}\hfill
 \begin{minipage}[r]{.39\linewidth}
     \vspace{-30pt}
@@ -130,7 +138,7 @@ final,
   \begin{minipage}[t]{.6\linewidth}
     \vspace{0pt}
   \begin{itemize}
-  \item Affected people $P_j$ as unified hazard indicator across categories
+  \item Affected people \tc{red}{$P_j$} as unified hazard indicator across categories
   \end{itemize}
   \begin{equation*}
     \ln\big(A_{j,t}\big) = \gamma_j + \delta_{t} + \theta_j t + \sum_{l=0}^{L}\bA_{l}\tc{red}{P_{j,t-l}}+\epsilon_{j,t}
@@ -160,7 +168,7 @@ final,
   \frametitle{Step 3: Timeseries of Cumulative Damages}
       \begin{minipage}[l]{\linewidth}
         \begin{itemize}
-  \item For simplicity assume:\\ 1 GCM $+$ SSP2 $+$ 1 impact model for each category $c$          
+  \item For simplicity assume:\\ 1 GCM $+$ SSP2 $+$ 1 impact model for each category $c\in\mbC$          
   \item Timeseries of \emph{relative} cumulative damages for country $j$ for \emph{one} impact realization up to time $t$ $\lbrace P\rbrace_{j,t}$  
   \end{itemize}
   \begin{equation*}
@@ -186,7 +194,7 @@ final,
   \begin{minipage}[t]{.65\linewidth}
     \vspace{0pt}
   \begin{itemize}
-  \item Each RCP-SSP-GCM combination provides \textbf{unique} mapping $t \rightarrow T$
+  \item Each RCP-SSP-GCM combination provides \textbf{unique} mapping $t \mapsto T$
     \arrowitem For each temperature interval $\Delta T$ there is associated set of cumulative damages
   \end{itemize}
     \begin{equation*}
