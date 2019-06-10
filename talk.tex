@@ -46,7 +46,7 @@ final,
   \item Endogenously explain empirically observed persistencies by `specialized' impact models 
   \end{enumerate}
   \begin{itemize}
-\arrowitem 1. appears to be feasible way forward for next evaluation
+\arrowitem 1. \& 2. appear to be feasible ways forward until next evaluation
   \end{itemize}
 \end{frame}
 
@@ -58,7 +58,7 @@ final,
   \vfill
   \begin{equation*}
     \label{eq:CD}
-    Y(\tau,T)\equiv \big(1-\tc{red}{\DA(\tau,T)}\big)A(\tau)\left[\big(1-\tc{red}{\DK(\tau,T)}\big)K(\tau) \right]^\alpha L(\tau)^{\alpha-1}
+    Y(\tau,T)\equiv \big(1-\tc{red}{\DA(T)}\big)A(\tau)\left[\big(1-\tc{red}{\DK(T)}\big)K(\tau) \right]^\alpha L(\tau)^{\alpha-1}
   \end{equation*}
   \vfill
   \begin{minipage}[l]{.45\linewidth}
@@ -83,18 +83,24 @@ final,
  \vfill
  \begin{itemize}
  \item Assumption: Climate extremes have an instantaneous impact on $K$, and have persistent impacts on $A$, GDP.
-   \arrowitem Estimate persistencies for $A$
+   \arrowitem Estimate $\DA$
    \end{itemize}
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Climate Damages From ISIMIP Simulations}
+  \tc{tableaublue}{\textbf{Guiding principles:}}
+  \begin{itemize}
+  \item Avoid assumption on impact distributions
+  \item Average as late as possible
+  \end{itemize}
+  \tc{tableaublue}{\textbf{Steps:}}
   \begin{enumerate}
   \item Estimate persistence times
-  \item Sum damages across categories
+  \item Sum damages across event categories (e.g., tropical storms, fluvial floods, droughts etc.)
   \item Obtain timeseries of cumulative damages (country or subnational level)
-  \item Transition From event-based to temperature dependent damages
+  \item Transition from event-based to temperature dependent damages
   \item Integrate to world regions  
   \end{enumerate}
 \end{frame}
@@ -166,16 +172,18 @@ final,
 
 \begin{frame}
   \frametitle{Step 3: Timeseries of Cumulative Damages}
-      \begin{minipage}[l]{\linewidth}
+  \begin{minipage}[l]{\linewidth}
+    \tc{tableaublue}{\textbf{Impact realization $\lbrace P\rbrace_{j,t}$:}}
         \begin{itemize}
-  \item For simplicity assume:\\ 1 GCM $+$ SSP2 $+$ 1 impact model for each category $c\in\mbC$          
-  \item Timeseries of \emph{relative} cumulative damages for country $j$ for \emph{one} impact realization up to time $t$ $\lbrace P\rbrace_{j,t}$  
+  \item Timeseries of impacts  for country $j$ up to time $t$ uniquely determined by combi. of 1 GCM $+$ RCP $+$ SSP2 $+$ 1 impact model for each category $c\in\mbC$          
+  \arrowitem Timeseries of \emph{relative} cumulative damages
   \end{itemize}
   \begin{equation*}
      \DA_{j,t}\left(\lbrace P\rbrace_{j,t}\right)\equiv 1 - \ \prod_{n=0}^{t}\left(1-\dA_{j,t-n}\right)
    \end{equation*}
+   \vspace{-3ex}
    \begin{itemize}
-\item  $\dA_{j,t-n}$ denotes the `instantaneous' damage caused by a series $\lbrace P_{j,t-m}^i\rbrace_{m=0}^L$ of hazards   
+\item  where $\dA_{j,t-n}$ denotes the `instantaneous' damage caused by a series $\lbrace P_{j,t-m}^i\rbrace_{m=0}^L$ of hazards   
    \end{itemize}
   \begin{equation*}
     \dA_{j,t}\left(\lbrace P_{j,t-m}^i\rbrace_{m=0}^L\right)\equiv \sum_{m=0}^L\beta_m\sum_{i=0}^IP_{j,t-m}^i
@@ -191,10 +199,10 @@ final,
 
 \begin{frame}
   \frametitle{Step 4: From Event-Based to Temperature Dependent Damages}
-  \begin{minipage}[t]{.65\linewidth}
+  \begin{minipage}[t]{.6\linewidth}
     \vspace{0pt}
   \begin{itemize}
-  \item Each RCP-SSP-GCM combination provides \textbf{unique} mapping $t \mapsto T$
+  \item Each RCP-GCP-SSP combination provides \textbf{unique} temperature path, i.e., mapping $t \mapsto T$
     \arrowitem For each temperature interval $\Delta T$ there is associated set of cumulative damages
   \end{itemize}
     \begin{equation*}
@@ -202,13 +210,13 @@ final,
  \end{equation*}
  \vspace{-20pt}
 \begin{itemize}
-\item Ensemble average over set members $\mbDA_{j}(\Delta T)$ yields country level damages over temperature interval  
+\item Ensemble average over set members $\mbDA_{j}(\Delta T)$ yields country level damages for $\Delta T$  
 \end{itemize}
 \begin{equation*}
   \langle \DA_{j}\rangle(\Delta T)\equiv\big\langle \DA_{j,t}\big\rangle_{\mbDA_{j}}(\Delta T)
 \end{equation*}
 \end{minipage}\hfill
-\begin{minipage}[t]{.35\linewidth}
+\begin{minipage}[t]{.4\linewidth}
   \vspace{20pt}
   \centering
   \includegraphics[width=\linewidth]{figures/damage_averaging}
